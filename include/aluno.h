@@ -33,6 +33,6 @@ int getQuantidadeAlunosCadastrados(void);
 int adicionarAluno(int, char *, int, int, float, float, float, float);
 int removerAluno(int);
 int atualizarAluno(int, int, float, float, float, float);
-void getAlunos(const char *);
+char* getAlunos(void);
 
 #endif

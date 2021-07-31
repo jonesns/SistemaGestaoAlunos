@@ -166,33 +166,33 @@ int atualizarAluno(int matricula, int faltas,
     }
 }
 
-void getAlunos(const char *str){
+char *getAlunos(void){
     int count = 0;
     float *ptr;
     int i = qtdCadastrados;
+    char temp[4500];
+    char aux[150];
+    char *saida;
     
-    char saida[100];
-    
-    /*saida = malloc(qtdCadastrados*sizeof(char));*/
-    
-    printf("%s\n","------------------------------INICIO------------------------------------");
     while (count < MAX_ALUNOS)
     {
         if(alunos[count] != NULL){
             ptr = Aluno_getNotas(alunos[count]);
             /*sprintf(saida[i],*/
             /*printf("%s\n","-----------------------------------------------------------------------");*/
-            sprintf(saida,
+            sprintf(aux,
                     "Matricula: %d;\nNome: %s;\nTurma: %d;\nNotas: %.2f, %.2f, %.2f, %.2f;\nFaltas: %d;\n",
                     Aluno_getMatricula(alunos[count]), Aluno_getNome(alunos[count]), Aluno_getCodTurma(alunos[count]), 
                     *(ptr+0), *(ptr+1),*(ptr+2), *(ptr+3), Aluno_getFaltas(alunos[count]));
             i = i+1;
-            printf("\n%s\n", saida);
-            strcat(str,saida);
+            /*printf("\n%s\n", aux);*/
+            strcat(temp,aux);
         }
         count = count+1;
     }
-    printf("%s\n","-------------------------------FIM-------------------------------------");
+    saida = (char*)malloc((strlen(temp)+1)*sizeof(char));
+    strcpy(saida, temp);
+    return saida;
 }
 
 /*
